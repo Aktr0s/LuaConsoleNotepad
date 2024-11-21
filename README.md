@@ -1,4 +1,6 @@
-# ***INDEV NOT COMPLETE!***
+> [!WARNING]
+> # ***INDEV. NOT COMPLETE!***
+
 # LuaTerminalNotepad (LTN)
 
 ### A small kinda notepad written in Lua meant to be run in terminal
