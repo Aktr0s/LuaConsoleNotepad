@@ -34,27 +34,26 @@ function file_handle.save_to_file(data_table, filename)
     if choice == "y" then
         local file = io.open(filename, "w")
         for _, value in ipairs(data_table) do
-            file:write(value .. "\n") -- Write each value on a new line
+            file:write(value .. "\n")
         end
         file:close()
     end
 end
 
 function countLines(filename)
-    local lineCount = 0  -- Initialize line counter
-    local file = io.open(filename, "r")  -- Open the file in read mode
+    local lineCount = 0
+    local file = io.open(filename, "r")
 
     if not file then
         print("Could not open file:", filename)
         return 0
     end
 
-    -- Read the file line by line
     for line in file:lines() do
-        lineCount = lineCount + 1  -- Increment counter for each line
+        lineCount = lineCount + 1
     end
 
-    file:close()  -- Close the file after reading
+    file:close()
     return lineCount
 end
 

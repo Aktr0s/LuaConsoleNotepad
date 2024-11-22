@@ -52,7 +52,7 @@ function prompt.readyPrompt()
                 print("Invalid command.")
             end
         else
-            print("No command detected.")
+            print("Invalid input.")
         end
     end
 end
