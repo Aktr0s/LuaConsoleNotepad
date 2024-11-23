@@ -1,7 +1,7 @@
 local file_handle = require("file_handle")
 local prompt = require("prompt")
 local tos = require("terminal_os")
-local cmd = require("cmdAction")
+local cmd = require("cmd_action")
 
 function display_help_message()
     local help_message = [[
