@@ -1,5 +1,5 @@
-> [!WARNING]
-> # ***INDEV. NOT COMPLETE!***
+> [!NOTE]
+> # ***Version 1.0 It might be buggy.***
 
 # LuaTerminalNotepad (LTN)
 
@@ -9,7 +9,7 @@
 *Yes it only supports .txt cause it's so simple :/*
 
 ### <ins>--help:</ins>
-    :help  -  it displays this message
+    --help  -  it displays this message
 
     :del <int>  -  deletes the given number line.
 

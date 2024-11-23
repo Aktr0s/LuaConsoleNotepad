@@ -40,12 +40,19 @@ function prompt.readyPrompt()
 
             if cmdName then
                 args[#args + 1] = "" --ensures that there are at least two arguments
-                return cmdName, args
+                local invalid = false
+                return cmdName, args, invalid
             else
-                print("Invalid command.")
+                local invalid = true
+                cmdName = ""
+                args = {}
+                return cmdName, args, invalid
             end
         else
-            print("Invalid input.")
+            local invalid = true
+            local cmdName = ""
+            local args = {}
+            return cmdName, args, invalid
         end
     end
 end
