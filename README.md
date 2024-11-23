@@ -1,5 +1,5 @@
 > [!NOTE]
-> # ***Version 1.0 It might be buggy.***
+> # ***Version 1.0_1 It might be buggy.***
 
 # LuaTerminalNotepad (LTN)
 
@@ -9,7 +9,7 @@
 *Yes it only supports .txt cause it's so simple :/*
 
 ### <ins>--help:</ins>
-    --help  -  it displays this message
+    --help, -h  -  it displays this message
 
     :del <int>  -  deletes the given number line.
 
@@ -19,10 +19,10 @@
 
     :wl <int> <string>  -  same as earlier but it writes to a given number line.
 
-    :sf <int>  -  it shorten the file to given line number.
+    :sf <int>  -  it shortens the file to given line number.
 
     :save  -  saves the file
 
-    :exit  -  exits the program
+    :quit  -  exits the program
 
-    :sae  -  saves the file end exits the program
+    :sq  -  saves the file end exits the program

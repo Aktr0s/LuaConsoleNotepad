@@ -4,7 +4,7 @@ function prompt.readyPrompt()
     while(true)
     do
         io.write("> ")
-        local input = io.read():lower()
+        local input = io.read()
 
         if string.sub(input, 1, 1) == ":" then
 

@@ -52,12 +52,12 @@ local cmd_action = {}
             end
         end,
 
-        ["exit"] = function()
+        ["quit"] = function()
             tos.clear()
             os.exit()
         end,
 
-        ["sae"] = function(content,filename)
+        ["sq"] = function(content,filename)
             local file = io.open(filename, "w")
             if file then
                 for _, v in ipairs(content) do

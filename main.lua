@@ -52,7 +52,7 @@ if #arg == 0 then
 elseif #arg >= 3 then
     error("Error: Too many arguments To get help: --help")
 end
-if arg[1] == "--help" then
+if arg[1] == "--help" or arg[1] == "-h" then
     tos.clear()
     display_help_message()
     os.exit()
@@ -65,8 +65,8 @@ local content = file_handle.read_file(arg[1])
 refresh(content,false)
 while true do
     local promptResult, argument, isInvalid = prompt.readyPrompt()
-    if isInvalid or cmd[promptResult] == false then
-        refresh(content,isInvalid)
+    if isInvalid or cmd[promptResult] == nil then
+        refresh(content,true)
         print("Invalid Command.")
     else
         if promptResult == "del" then content = cmd["del"](content,argument[1])
@@ -74,9 +74,9 @@ while true do
         elseif promptResult == "clear" then content = cmd["clear"](content)
         elseif promptResult == "sf" then content = cmd["sf"](content,argument[1])
         elseif promptResult == "save" then cmd["save"](content,arg[1])
-        elseif promptResult == "exit" then cmd["exit"]()
-        elseif promptResult == "sae" then cmd["sae"](content,arg[1])
+        elseif promptResult == "quit" then cmd["quit"]()
+        elseif promptResult == "sq" then cmd["sq"](content,arg[1])
         end
-        refresh(content,isInvalid)
+        refresh(content,false)
     end
 end
