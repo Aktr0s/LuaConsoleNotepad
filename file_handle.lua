@@ -21,7 +21,9 @@ function file_handle.read_file(filename)
         local choice = io.read():lower()
         if choice == "y" then
             local temp = io.open(filename, "w")
-            temp:close()
+            if temp then
+                temp:close()
+            end
         end
     end
     return text_table
@@ -33,10 +35,12 @@ function file_handle.save_to_file(data_table, filename)
     local choice = io.read():lower()
     if choice == "y" then
         local file = io.open(filename, "w")
-        for _, value in ipairs(data_table) do
-            file:write(value .. "\n")
+        if file then
+            for _, value in ipairs(data_table) do
+                file:write(value .. "\n")
+            end
+            file:close()
         end
-        file:close()
     end
 end
 
