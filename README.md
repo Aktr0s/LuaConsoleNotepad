@@ -1,5 +1,5 @@
 > [!NOTE]
-> # ***Version 1.0_2 It might be buggy.***
+> # ***Version 1.0_3 It might be buggy.***
 
 # LuaTerminalNotepad (LTN)
 
@@ -15,9 +15,9 @@
 
     :clear  -  it wipes the entire file
 
-    :wl <string>  -  writes a string to the next line when file ends. It overwrites lines.
+    :wl <string>  -  writes a string to the next line when file ends.
 
-    :wl <int> <string>  -  same as earlier but it writes to a given number line.
+    :wl <int> <string>  -  it overwrites the line with a given number.
 
     :sf <int>  -  it shortens the file to given line number.
 

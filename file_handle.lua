@@ -16,7 +16,7 @@ function file_handle.read_file(filename)
         until not line
         file:close()
     else
-        print("Error: File does not exist.")
+        print("Specified file does not exist.")
         io.write("Do you want to create it? [Y/N]")
         local choice = io.read():lower()
         if choice == "y" then
@@ -24,6 +24,8 @@ function file_handle.read_file(filename)
             if temp then
                 temp:close()
             end
+        else
+            os.exit()
         end
     end
     return text_table

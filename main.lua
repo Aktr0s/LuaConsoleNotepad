@@ -15,7 +15,7 @@ function display_help_message()
 
 :wl <string>     -  Writes a string to the next line when file ends.
 
-:wl <int> <string> - Same as earlier but it writes to a given number line. It overwrites lines.
+:wl <int> <string> - it overwrites the line with a given number.
 
 :sf <int>        -  Shortens the file to the given line number.
 
