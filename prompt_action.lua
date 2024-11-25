@@ -1,5 +1,5 @@
 local tos = require("terminal_os")
-local cmd_action = {}
+local prompt_action = {}
     local switch = {
         ["del"] = function(content, ln)
             ln = tonumber(ln)  -- Convert ln to a number if it's a string

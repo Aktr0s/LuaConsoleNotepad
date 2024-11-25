@@ -1,5 +1,5 @@
 > [!NOTE]
-> # ***Version 1.0_1 It might be buggy.***
+> # ***Version 1.0_2 It might be buggy.***
 
 # LuaTerminalNotepad (LTN)
 
