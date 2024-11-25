@@ -21,9 +21,9 @@ function display_help_message()
 
 :save            -  Saves the file.
 
-:exit            -  Exits the program.
+:quit            -  Exits the program.
 
-:sae             -  Saves the file and exits the program.
+:sq              -  Saves the file and exits the program.
 ]]
     print(help_message)
 end
