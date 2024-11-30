@@ -3,7 +3,7 @@ local prompt = {}
 function prompt.readyPrompt()
     while(true)
     do
-        io.write("> ")
+        io.write("\27[32m> \27[0m")
         local input = io.read()
 
         if string.sub(input, 1, 1) == ":" then

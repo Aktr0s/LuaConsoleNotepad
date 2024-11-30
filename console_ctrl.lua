@@ -1,6 +1,6 @@
-terminal_os = {}
+local console_ctrl = {}
 
-function terminal_os.terminalSize()
+function console_ctrl.terminalSize()
     local size = {['rows'] = 0, ['cols'] = 0}
     if package.config:sub(1,1) == '\\' then
         --windows detected
@@ -30,7 +30,7 @@ function terminal_os.terminalSize()
     return size
 end
 
-function terminal_os.clear()
+function console_ctrl.clear()
     if package.config:sub(1,1) == '\\' then
         os.execute("cls")
     else
@@ -38,4 +38,25 @@ function terminal_os.clear()
     end
 end
 
-return terminal_os
+function console_ctrl.forceUTF8OnWindows()
+    if package.config:sub(1,1) == '\\' then
+        os.execute("chcp 65001")
+    end
+end
+
+function console_ctrl.colorizer(messageType, text)
+    local styles = {
+        warning = {text = "\27[33m", icon = "[!]", entryText = "Warning: "},
+        error = {text = "\27[1;31m", icon = "[X]", entryText = "Error: "},
+        info = {text = "\27[4;36m", icon = "[i]", entryText = "Info: "},
+        infoLogo = {text = "\27[34m", icon = "[@]", entryText = ""},
+    }
+    local style = styles[messageType]
+    if not style then
+        return text
+    end
+    return style.text .. style.icon .. style.entryText .. text .. "\27[0m"
+end
+
+
+return console_ctrl

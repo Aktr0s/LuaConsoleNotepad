@@ -1,3 +1,4 @@
+local consoleC = require("console_ctrl")
 local file_handle = {}
 
 function file_handle.extensionCheck(filename)
@@ -16,24 +17,15 @@ function file_handle.read_file(filename)
         until not line
         file:close()
     else
-        print("Specified file does not exist.")
-        io.write("Do you want to create it? [Y/N]")
-        local choice = io.read():lower()
-        if choice == "y" then
-            local temp = io.open(filename, "w")
-            if temp then
-                temp:close()
-            end
-        else
-            os.exit()
-        end
+        print(consoleC.colorizer("error","Specified file does not exist."))
+        os.exit()
     end
     return text_table
 end
 
 
 function file_handle.save_to_file(data_table, filename)
-    io.write("Do you want overwrite the file? [Y/N]")
+    io.write(consoleC.colorizer("warning","Do you want overwrite the file? [Y/N]"))
     local choice = io.read():lower()
     if choice == "y" then
         local file = io.open(filename, "w")
@@ -46,7 +38,14 @@ function file_handle.save_to_file(data_table, filename)
     end
 end
 
-function countLines(filename)
+function file_handle.ensure_txt_extension(filename)
+    if filename:sub(-4) ~= ".txt" then
+        filename = filename .. ".txt"
+    end
+    return filename
+end
+
+local function countLines(filename)
     local lineCount = 0
     local file = io.open(filename, "r")
 

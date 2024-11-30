@@ -1,28 +1,46 @@
 > [!NOTE]
-> # ***Version 1.0_3 It might be buggy.***
+> # ***Version 1.5.0 Now app can run standalone***
 
-# <img src="https://github.com/user-attachments/assets/07853311-6e82-488c-866f-41d8c922bdac" alt="LTN-ICON" width="100"> LuaTerminalNotepad (LTN)
+# <img src="https://github.com/user-attachments/assets/07853311-6e82-488c-866f-41d8c922bdac" alt="LTN-ICON" width="100"> LuaConsoleNotepad (LCN)
 ### A small kinda notepad written in Lua meant to be run in terminal
 
-### > Usage: lua main.lua [--help] <filename.txt>
+### > Usage: lua main.lua [--help] [<filename>.txt]
 *Yes it only supports .txt cause it's so simple :/*
 
 
 ### <ins>--help:</ins>
-    --help, -h  -  it displays this message
+**In edit mode:**
 
-    :del <int>  -  deletes the given number line.
+    :del <number>       -  Deletes the given number line.
 
-    :clear  -  it wipes the entire file
+    :clean           -  Wipes the entire file.
 
-    :wl <string>  -  writes a string to the next line when file ends.
+    :wl <content>     -  Writes a string to the next line when file ends.
 
-    :wl <int> <string>  -  it overwrites the line with a given number.
+    :wl <number> <content> - it overwrites the line with a given number.
 
-    :sf <int>  -  it shortens the file to given line number.
+    :sf <number>        -  Shortens the file to the given line number.
 
-    :save  -  saves the file
+    :save            -  Saves the file.
 
-    :quit  -  exits the program
+    :quit, exit      -  Exits the program.
 
-    :sq  -  saves the file end exits the program
+    :sq              -  Saves the file and exits the program.
+
+**In explorer mode:**
+
+    :help            -  Displays this message
+
+    :logo            - Displays LCN logo
+
+    :clear           - Clears the prompt
+
+    :df <filename>    - Deletes given file.
+
+    :rn <oldname> <newname> - Renames given file.
+
+    :new <filename>  -  Creates new file with given filename.
+
+    :edit <filename>  -  Switches to edit mode with given filename.
+
+    :quit, exit  -  Exits the program.

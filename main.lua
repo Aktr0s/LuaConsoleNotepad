@@ -1,40 +1,21 @@
 local file_handle = require("file_handle")
 local prompt = require("prompt")
-local tos = require("terminal_os")
-local cmd = require("prompt_action")
-
-function display_help_message()
-    local help_message = [[
-> Usage: lua main.lua [--help] <filename>.txt
-
---help            -  Displays this message
-
-:del <int>       -  Deletes the given number line.
-
-:clear           -  Wipes the entire file.
-
-:wl <string>     -  Writes a string to the next line when file ends.
-
-:wl <int> <string> - it overwrites the line with a given number.
-
-:sf <int>        -  Shortens the file to the given line number.
-
-:save            -  Saves the file.
-
-:quit            -  Exits the program.
-
-:sq              -  Saves the file and exits the program.
-]]
-    print(help_message)
-end
+local consoleC = require("console_ctrl")
+local infile_action = require("prompt_infile_action")
+local explorer_action = require("prompt_explorer_action")
+local consoleD = require("console_display")
+local fExplorer = require("file_explorer")
+local file_name
+local content
+local editMode = false
 
 
-function refresh(table,error)
+local function refresh(table,error)
     local spacing = error and 2 or 1
-    local size = tos.terminalSize()
+    local size = consoleC.terminalSize()
     local PromptGap = #table
     local maxDigits = #tostring(#table)
-    tos.clear()
+    consoleC.clear()
     for index, value in ipairs(table) do
         io.write(string.format("%" .. maxDigits .. "d& %s\n", index, value))
     end
@@ -46,37 +27,84 @@ function refresh(table,error)
     end
 end
 
+consoleC.forceUTF8OnWindows()
+consoleC.clear()
+consoleD.display_logo()
 
-if #arg == 0 then
-    error("Error: No arguments specified. To get help: --help")
-elseif #arg >= 3 then
-    error("Error: Too many arguments To get help: --help")
-end
-if arg[1] == "--help" or arg[1] == "-h" then
-    tos.clear()
-    display_help_message()
-    os.exit()
-end
 
-if not file_handle.extensionCheck(arg[1]) then
-    error("Error: Only .txt files are supported. To get help: --help")
+if #arg >= 3 then
+    error(consoleC.colorizer("error","Too many arguments To get help: --help"))
 end
-local content = file_handle.read_file(arg[1])
-refresh(content,false)
-while true do
-    local promptResult, argument, isInvalid = prompt.readyPrompt()
-    if isInvalid or cmd[promptResult] == nil then
-        refresh(content,true)
-        print("Invalid Command.")
-    else
-        if promptResult == "del" then content = cmd["del"](content,argument[1])
-        elseif promptResult == "wl" then content = cmd["wl"](content,argument[1],argument[2])
-        elseif promptResult == "clear" then content = cmd["clear"](content)
-        elseif promptResult == "sf" then content = cmd["sf"](content,argument[1])
-        elseif promptResult == "save" then cmd["save"](content,arg[1])
-        elseif promptResult == "quit" then cmd["quit"]()
-        elseif promptResult == "sq" then cmd["sq"](content,arg[1])
-        end
-        refresh(content,false)
+if arg[1] then
+    if arg[1] == "--help" or arg[1] == "-h" then
+        consoleC.clear()
+        consoleD.display_help_message()
+        os.exit()
     end
+    if file_handle.extensionCheck(arg[1]) then
+       editMode = true 
+       file_name = arg[1]
+       content = file_handle.read_file(file_name)
+    else
+        error(consoleC.colorizer("info","Only .txt files are supported. To get help: --help"))
+    end
+else
+    fExplorer.listEditableFiles(".")
+end
+
+
+
+--local file_name = arg[1]
+--local content = file_handle.read_file(file_name)
+
+while true do
+    if editMode then
+        local promptResult, promptArgument, isInvalid = prompt.readyPrompt()
+
+        if isInvalid or infile_action[promptResult] == nil then
+            refresh(content, true)
+            print(consoleC.colorizer("warning", "Invalid Command."))
+        else
+            local action = infile_action[promptResult]
+            if promptResult == "save" or promptResult == "sq" or promptResult == "exp" then
+                if promptResult == "exp" then
+                    action(content, file_name)
+                    editMode = false
+                    consoleC.clear()
+                    fExplorer.listEditableFiles(".")
+                    goto continue
+                end
+                action(content, file_name)
+            else
+                action(content, table.unpack(promptArgument))
+            end
+            refresh(content, false)
+        end
+    else
+        local promptResult, promptArgument, isInvalid = prompt.readyPrompt()
+        if isInvalid or explorer_action[promptResult] == nil then
+            print(consoleC.colorizer("warning", "Invalid Command."))
+        else
+            for i, value in ipairs(promptArgument) do
+                promptArgument[i] = file_handle.ensure_txt_extension(value)
+            end
+            if promptResult == "edit" then
+                local success, filename = explorer_action["edit"](table.unpack(promptArgument))
+                if success then
+                    editMode = true
+                    file_name = filename
+                    content = file_handle.read_file(file_name)
+                    refresh(content, false)
+                else
+                    print(consoleC.colorizer("error", "Failed to enter edit mode"))
+                end
+            else
+                local action = explorer_action[promptResult]
+                if action then
+                    action(table.unpack(promptArgument))
+                end
+            end
+        end
+    end
+    ::continue::
 end
