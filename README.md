@@ -1,5 +1,5 @@
 > [!NOTE]
-> # ***Version 1.5.0 Now app can run standalone***
+> # ***Version 1.5.0 Total conversion, added Explorer mode.***
 
 # <img src="https://github.com/user-attachments/assets/7944a940-f10f-4fc3-af3b-c5ed0f2e3ea4" alt="LTN-ICON" width="100"> LuaConsoleNotepad (LCN)
 ### A small kinda notepad written in Lua meant to be run in terminal
