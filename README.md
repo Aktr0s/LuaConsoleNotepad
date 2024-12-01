@@ -1,7 +1,7 @@
 > [!NOTE]
 > # ***Version 1.5.0 Now app can run standalone***
 
-# <img src="https://github.com/user-attachments/assets/07853311-6e82-488c-866f-41d8c922bdac" alt="LTN-ICON" width="100"> LuaConsoleNotepad (LCN)
+# <img src="https://github.com/user-attachments/assets/7944a940-f10f-4fc3-af3b-c5ed0f2e3ea4" alt="LTN-ICON" width="100"> LuaConsoleNotepad (LCN)
 ### A small kinda notepad written in Lua meant to be run in terminal
 
 ### > Usage: lua main.lua [--help] [<filename>.txt]
