@@ -4,7 +4,7 @@
 # <img src="https://github.com/user-attachments/assets/7944a940-f10f-4fc3-af3b-c5ed0f2e3ea4" alt="LTN-ICON" width="100"> LuaConsoleNotepad (LCN)
 ### A small kinda notepad written in Lua meant to be run in terminal
 
-### > Usage: lua main.lua [--help] [<filename>.txt]
+### > Usage: lua main.lua [--help] [filename.txt]
 *Yes it only supports .txt cause it's so simple :/*
 
 
