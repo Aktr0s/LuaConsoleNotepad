@@ -25,7 +25,7 @@ end
 local function list_txt_files(path)
     local files = {}
     -- Adjust the command based on your operating system
-    local command = "ls " .. path .. "/*.txt" -- For Unix-based systems (Linux, macOS)
+    local command = "ls " .. path .. "/*.txt 2>/dev/null" -- For Unix-based systems (Linux, macOS)
     if package.config:sub(1, 1) == "\\" then -- For Windows
         command = 'dir "' .. path .. '\\*.txt" /b 2>nul' -- Redirect errors to null
     end
