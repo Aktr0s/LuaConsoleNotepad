@@ -1,10 +1,10 @@
 > [!NOTE]
-> # ***Version 1.5.0_1 Total conversion, added Explorer mode.***
+> # ***Version 1.5.0_5 Total conversion, added Explorer mode.***
 
 # <img src="https://github.com/user-attachments/assets/7944a940-f10f-4fc3-af3b-c5ed0f2e3ea4" alt="LTN-ICON" width="100"> LuaConsoleNotepad (LCN)
 ### A small kinda notepad written in Lua meant to be run in terminal
 
-### > Usage: lua main.lua [--help] [filename.txt]
+### > Usage: lua LCN.lua [--help] [filename.txt]
 *Yes it only supports .txt cause it's so simple :/*
 
 
@@ -17,13 +17,15 @@
 
     :wl <content>     -  Writes a string to the next line when file ends.
 
-    :wl <number> <content> - it overwrites the line with a given number.
+    :wl <number> <content> - It overwrites the line with a given number.
 
     :sf <number>        -  Shortens the file to the given line number.
 
     :save            -  Saves the file.
 
     :quit, exit      -  Exits the program.
+
+    :exp             - Saves the file and switches to explorer mode
 
     :sq              -  Saves the file and exits the program.
 

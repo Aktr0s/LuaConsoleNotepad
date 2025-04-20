@@ -22,6 +22,14 @@ local switch = {
         end
     end,
     ["rn"] = function(oldfilename, newfilename)
+        if oldfilename == nil or newfilename == nil then
+            print(consoleC.colorizer("error","Please provide both old and new filenames."))
+            return
+        end
+        if oldfilename == newfilename then
+            print(consoleC.colorizer("error","Old and new filenames are the same."))
+            return
+        end
         if os.rename(oldfilename, newfilename) then
             print(consoleC.colorizer("info","File renamed successfully."))
         else
@@ -29,6 +37,10 @@ local switch = {
         end
     end,
     ["new"] = function(filename)
+        if filename == ".txt" then
+            print(consoleC.colorizer("error","Please provide a filename."))
+            return
+        end
         local file, err = io.open(filename, "w")
         if not file then
             print(consoleC.colorizer("error","Failed to create".. filename .. err))

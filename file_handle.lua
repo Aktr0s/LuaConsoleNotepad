@@ -7,22 +7,18 @@ end
 
 function file_handle.read_file(filename)
     local file = io.open(filename, "r")
-    local text_table = {}
     if file then
-        repeat
-            local line = file:read("*l")
-            if line ~= nil then
-                table.insert(text_table, line)
-            end
-        until not line
+        local text_table = {}
+        for line in file:lines() do
+            table.insert(text_table, line)
+        end
         file:close()
+        return text_table
     else
-        print(consoleC.colorizer("error","Specified file does not exist."))
-        os.exit()
+        print(consoleC.colorizer("error", "Specified file does not exist."))
+        return nil
     end
-    return text_table
 end
-
 
 function file_handle.save_to_file(data_table, filename)
     io.write(consoleC.colorizer("warning","Do you want overwrite the file? [Y/N]"))

@@ -18,6 +18,8 @@ In edit mode:
 
 :quit, exit      -  Exits the program.
 
+:exp             - Saves the file and switches to explorer mode.
+
 :sq              -  Saves the file and exits the program.
 
 In explorer mode:

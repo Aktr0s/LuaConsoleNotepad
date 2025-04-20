@@ -91,10 +91,13 @@ while true do
             if promptResult == "edit" then
                 local success, filename = explorer_action["edit"](table.unpack(promptArgument))
                 if success then
-                    editMode = true
-                    file_name = filename
-                    content = file_handle.read_file(file_name)
-                    refresh(content, false)
+                    local fileContent = file_handle.read_file(filename)
+                    if fileContent then
+                        editMode = true
+                        file_name = filename
+                        content = fileContent
+                        refresh(content, false)
+                    end
                 else
                     print(consoleC.colorizer("error", "Failed to enter edit mode"))
                 end
